@@ -1,0 +1,66 @@
+HELP.md
+./springboot/.gradle
+./springboot/build/classes/
+./springboot/build/generated/
+./springboot/build/jib-cache/
+./springboot/build/reports/
+./springboot/build/resources/
+./springboot/build/test-results/
+./springboot/build/tmp/
+./springboot/build/jib-image.digest
+./springboot/build/jib-image.id
+./springboot/!build/libs/**.jar
+./springboot/!gradle/wrapper/gradle-wrapper.jar
+./springboot/!**/src/main/**
+./springboot/!**/src/test/**
+
+### STS ###
+./springboot/apt_generated
+./springboot/classpath
+./springboot/factorypath
+./springboot/project
+./springboot/settings
+./springboot/springBeans
+./springboot/sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+./react/node_modules
+./react/pnp
+./react/pnp.js
+
+# testing
+./react/coverage
+
+# production
+./react/build
+
+# misc
+./react/DS_Store
+./react/env.local
+./react/env.development.local
+./react/env.test.local
+./react/env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
