@@ -7,10 +7,15 @@ WORKDIR /react
 # add `/app/node_modules/.bin` to $PATH 
 ENV PATH /react/node_modules/.bin:$PATH 
 
+ARG REACT_APP_API_BASE_URL
+ENV REACT_APP_API_BASE_URL = ${REACT_APP_API_BASE_URL}
+
 # install and cache app dependencies 
-COPY package.json /react/package.json 
-RUN npm install --silent 
-RUN npm install react-scripts@3.0.1 -g --silent 
+COPY package*.json ./
+RUN npm cache clean --force
+RUN npm install --silent
+RUN npm install react-scripts@3.4.1 -g --silent
+COPY . .
 
 # start app 
 CMD ["npm", "start"]

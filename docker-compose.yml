@@ -5,8 +5,8 @@ version: '3.7'
 # Define services
 services:
   # App backend service
-  springboot:
-    container_name: springboot
+  web:
+    container_name: web
     # Configuration for building the docker image for the backend service
     build:
       context: ./springboot # Use an image built from the specified dockerfile in the `polling-app-server` directory.
@@ -14,27 +14,30 @@ services:
     ports:
       - "8080:8080" # Forward the exposed port 8080 on the container to port 8080 on the host machine
     restart: always
+    depends_on: 
+      - db # This service depends on mysql. Start that first.
     environment: # Pass environment variables to the service
       SPRING_DATASOURCE_URL: jdbc:mysql://management-tutorial.ccgxmy3lrzke.us-east-2.rds.amazonaws.com:3306/management
       SPRING_DATASOURCE_USERNAME: user
-      SPRING_DATASOURCE_PASSWORD: test1234     
-    networks: # Networks to join (Services on the same network can communicate with each other using their name)
-      - react
+      SPRING_DATASOURCE_PASSWORD: test1234 
 
+      
   # Frontend Service 
-  react:
+  app:
     build:
       context: ./react # Use an image built from the specified dockerfile in the `polling-app-client` directory.
       dockerfile: Dockerfile
+      args:
+        REACT_APP_API_BASE_URL: http://127.0.0.1:8080/api/customers
+    stdin_open: true
     volumes:
       - ./react:/usr/src/app
     ports:
       - "3000:3000" # Map the exposed port 80 on the container to port 9090 on the host machine
-    restart: always
+    restart: always 
     depends_on:
-      - springboot
-    networks:
-      - springboot  
+      - web
+
 
   # Database Service (Mysql)
   db:
@@ -49,5 +52,3 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: test1234
       MYSQL_ROOT_PASSWORD: test1234
-
- 
