@@ -11,7 +11,7 @@ ENV PATH /react/node_modules/.bin:$PATH
 # ENV REACT_APP_API_BASE_URL = ${REACT_APP_API_BASE_URL}
 
 # install and cache app dependencies 
-COPY package*.json ./
+COPY ./package.json ./
 
 RUN npm cache clean --force
 RUN npm install --silent
