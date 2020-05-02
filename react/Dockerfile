@@ -1,6 +1,7 @@
 # base image 
 # FROM node:12.16.1-alpine
-FROM node:12.2.0-alpine
+# FROM node:12.2.0-alpine
+FROM node:alpine
 
 # set working directory 
 # WORKDIR /react 
@@ -16,10 +17,10 @@ ENV PATH /app/node_modules/.bin:$PATH
 # COPY package*.json ./
 COPY package.json /app/package.json
 
-#RUN npm cache clean --force
+RUN npm cache clean --force
 RUN npm install --silent
 RUN npm install react-scripts@3.4.1 -g --silent
-# COPY . .
+COPY . .
 
 # start app 
 CMD ["npm", "start"]
