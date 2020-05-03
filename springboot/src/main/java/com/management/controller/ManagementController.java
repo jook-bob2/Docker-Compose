@@ -64,10 +64,10 @@ public class ManagementController {
 		List<String> list = new ArrayList<>();
 		for(MultipartFile file : files) {
 			//String savedName = uploadFile(file.getOriginalFilename(), file.getBytes());
-			//String savedName = UploadFileUtils.uploadFile("src/main/resources/static/upload/", file.getOriginalFilename(), file.getBytes());
-			String savedName = UploadFileUtils.uploadFile("home/upload/", file.getOriginalFilename(), file.getBytes());
+			String savedName = UploadFileUtils.uploadFile("src/main/resources/static/upload/", file.getOriginalFilename(), file.getBytes());
+			//String savedName = UploadFileUtils.uploadFile("home/upload/", file.getOriginalFilename(), file.getBytes());
 			System.out.println("===========");
-			dto.setImage("home/upload/"+savedName);
+			dto.setImage("upload/"+savedName);
 		}
 		managementService.customerAdd(dto);
 	}
