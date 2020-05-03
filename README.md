@@ -2,14 +2,14 @@
 ### Installation
 <pre>
 cd /home
-git clone https://github.com/ehrmaks/Docke-Compose.git
-cd ./Docke-Compose
+git clone https://github.com/ehrmaks/Docker-Compose.git
+cd ./Docker-Compose
 rm -r ./node_modules
 rm -r ./build
 </pre>
 
 ### Run
 <pre>
-cd Docke-Compose
+cd Docker-Compose
 docker-compose up -d --build
 </pre>
