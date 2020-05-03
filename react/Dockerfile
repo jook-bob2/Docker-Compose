@@ -11,12 +11,12 @@ ENV PATH /react/node_modules/.bin:$PATH
 # ENV REACT_APP_API_BASE_URL = ${REACT_APP_API_BASE_URL}
 
 # install and cache app dependencies 
-COPY ./package.json ./
+COPY ./package*.json ./
 
-RUN npm cache clean --force
-RUN npm install --silent
-RUN npm install react-scripts@3.4.1 -g --silent
+# RUN npm cache clean --force
+RUN npm install
+
 COPY . .
 
 # start app 
-CMD ["npm", "start"]
+CMD ["react-scripts", "start"]
