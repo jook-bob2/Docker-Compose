@@ -30,10 +30,10 @@ services:
       #args:
         #REACT_APP_API_BASE_URL: http://127.0.0.1:8080/api/customers
     stdin_open: true
-    volumes:
-      - ./react:/usr/src/app
+    #volumes:
+    #  - ./react:/usr/src/app
     ports:
-      - "3000:3000" # Map the exposed port 80 on the container to port 9090 on the host machine
+      - "80:3000" # Map the exposed port 80 on the container to port 9090 on the host machine
     restart: always 
     depends_on:
       - web
