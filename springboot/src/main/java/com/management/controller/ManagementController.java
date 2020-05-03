@@ -61,7 +61,6 @@ public class ManagementController {
 		dto.setGender(gender);
 		dto.setJob(job);
 		
-		List<String> list = new ArrayList<>();
 		for(MultipartFile file : files) {
 			//String savedName = uploadFile(file.getOriginalFilename(), file.getBytes());
 			String savedName = UploadFileUtils.uploadFile("src/main/resources/static/upload/", file.getOriginalFilename(), file.getBytes());
