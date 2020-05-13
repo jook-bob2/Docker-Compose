@@ -63,10 +63,10 @@ public class ManagementController {
 		
 		for(MultipartFile file : files) {
 			//String savedName = uploadFile(file.getOriginalFilename(), file.getBytes());
-			String savedName = UploadFileUtils.uploadFile("build/resources/main/static/upload/", file.getOriginalFilename(), file.getBytes());
+			String savedName = UploadFileUtils.uploadFile("tmp/upload/", file.getOriginalFilename(), file.getBytes());
 			//String savedName = UploadFileUtils.uploadFile("home/upload/", file.getOriginalFilename(), file.getBytes());
 			System.out.println("===========");
-			dto.setImage("upload/"+savedName);
+			dto.setImage("tmp/upload/"+savedName);
 		}
 		managementService.customerAdd(dto);
 	}
