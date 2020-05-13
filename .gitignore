@@ -10,3 +10,4 @@ springboot/build/resources
 springboot/build/test-results
 springboot/build/tmp
 springboot/src/main/resources/static/upload
+springboot/bin
