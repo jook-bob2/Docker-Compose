@@ -5,7 +5,7 @@ FROM openjdk:8-jdk-alpine
 MAINTAINER Jinseok Kim"qwefk123@naver.com"
 
 # Add a volume to /tmp
-VOLUME /tmp
+VOLUME /var/lib/datas
 
 # Make port 8080 available to the world outside this container
 EXPOSE 8080

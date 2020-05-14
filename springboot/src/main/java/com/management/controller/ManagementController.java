@@ -65,8 +65,8 @@ public class ManagementController {
 			//String savedName = uploadFile(file.getOriginalFilename(), file.getBytes());
 			String savedName = UploadFileUtils.uploadFile("tmp/", file.getOriginalFilename(), file.getBytes());
 			//String savedName = UploadFileUtils.uploadFile("home/upload/", file.getOriginalFilename(), file.getBytes());
-			System.out.println("============");
-			dto.setImage(savedName);
+
+			dto.setImage("tmp/"+savedName);
 		}
 		managementService.customerAdd(dto);
 	}

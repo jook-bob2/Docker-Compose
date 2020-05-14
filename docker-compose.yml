@@ -20,7 +20,8 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://management-tutorial.ccgxmy3lrzke.us-east-2.rds.amazonaws.com:3306/management
       SPRING_DATASOURCE_USERNAME: user
       SPRING_DATASOURCE_PASSWORD: test1234 
-
+    volumes: 
+      - test_volume:/var/lib/datas
       
   # Frontend Service 
   app:
@@ -38,6 +39,8 @@ services:
     depends_on:
       - web
 
+volumes: 
+  test_volume:
 
   # Database Service (Mysql)
  # db:
