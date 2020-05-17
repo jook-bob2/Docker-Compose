@@ -1,44 +1,32 @@
 package com.management.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.management.domain.ManagementDTO;
 import com.management.service.ManagementService;
-import com.management.util.UploadFileUtils;
+import com.management.util.S3Service;
+import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping("api")
+@AllArgsConstructor
 public class ManagementController {
 	@Autowired
 	private ManagementService managementService;
+	
+	@Autowired
+	private S3Service s3Service;
 	
 	@GetMapping(value = "/customers") 
 	public Map<String, Object> getManagementList() {
@@ -49,7 +37,7 @@ public class ManagementController {
 	}
 	@PostMapping(value = "/customers", headers = "content-type=multipart/form-data")
 	public void customersAdd(@RequestParam Map<String, Object> param,
-			@RequestPart("image") List<MultipartFile> files) throws Exception {
+			@RequestPart("image") MultipartFile file) throws Exception {
 		ManagementDTO dto = new ManagementDTO();
 		String name = (String) param.get("name");
 		String birthday = (String) param.get("birthday");
@@ -61,14 +49,13 @@ public class ManagementController {
 		dto.setGender(gender);
 		dto.setJob(job);
 		
-		for(MultipartFile file : files) {
-			//String savedName = uploadFile(file.getOriginalFilename(), file.getBytes());
-			String savedName = UploadFileUtils.uploadFile("var/lib/datas/", file.getOriginalFilename(), file.getBytes());
-			//String savedName = UploadFileUtils.uploadFile("home/upload/", file.getOriginalFilename(), file.getBytes());
-
-			dto.setImage("var/lib/datas"+savedName);
+		if (file != null) {
+			String url = s3Service.upload(file, "upload/", file.getBytes());
+			dto.setImage(url);
+			managementService.customerAdd(dto);
+		} else {
+			System.out.println("파일이 없습니다.");
 		}
-		managementService.customerAdd(dto);
 	}
 	
 //	private String uploadFile(String originalName, byte[] fileData) throws Exception {

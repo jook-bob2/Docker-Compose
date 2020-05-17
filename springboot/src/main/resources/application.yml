@@ -1,0 +1,30 @@
+spring:
+  jpa:
+    show-sql: true
+    generate-ddl: false
+    hibernate:
+      ddl-auto: create
+  h2:
+    console:
+      enabled: true
+  freemarker:
+    cache: false
+  datasource:
+    hikari:
+      jdbc-url: jdbc:mysql://management-tutorial.ccgxmy3lrzke.us-east-2.rds.amazonaws.com:3306/management
+      username: user
+      password: test1234
+      connection-test-query: SELECT NOW() FROM dual
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+server:
+  port: 8080 
+logging:
+  level:
+    org.springframework.web: debug 
+cloud:  aws:    credentials:      access-key: AKIA5Z4TV4JITBVRL454
+      secret-key: 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
+    region:
+      static: ap-northeast-2
+    stack:      auto: false

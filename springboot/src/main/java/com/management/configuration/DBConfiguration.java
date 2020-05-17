@@ -16,9 +16,8 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
-//application.properties�뿉 留덉씠諛뷀떚�뒪 �꽕�젙�씠 異붽��릺�뿀�쑝�땲 �빐�떦 �꽕�젙�쓣 泥섎━�븷 鍮�(Bean) 硫붿꽌�뱶瑜� �젙�쓽�빐�빞 �빀�땲�떎.
 @Configuration
-@PropertySource("classpath:/application.properties")
+@PropertySource("classpath:/application.yml")
 public class DBConfiguration {
 	@Autowired
 	private ApplicationContext applicationContext;

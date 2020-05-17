@@ -45,6 +45,8 @@ dependencies {
 	compile("javax.servlet:jstl:1.2")
 	compile("org.springframework.boot:spring-boot-starter-actuator")
 	compile('org.imgscalr:imgscalr-lib:4.2')
+	// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-aws
+	compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-aws', version: '2.2.1.RELEASE'
 }
 
 test {
