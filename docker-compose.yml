@@ -25,6 +25,7 @@ services:
       
   # Frontend Service 
   app:
+    container_name: app
     build:
       context: ./react # Use an image built from the specified dockerfile in the `polling-app-client` directory.
       dockerfile: Dockerfile
