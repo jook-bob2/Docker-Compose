@@ -4,8 +4,6 @@
 cd /home
 git clone https://github.com/ehrmaks/Docker-Compose.git
 cd ./Docker-Compose
-rm -r ./node_modules
-rm -r ./build
 </pre>
 
 ### Run
