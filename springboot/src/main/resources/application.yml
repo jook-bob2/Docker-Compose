@@ -19,12 +19,16 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
 server:
-  port: 8080 
+  port: 8081
 logging:
   level:
-    org.springframework.web: debug 
-cloud:  aws:    credentials:      access-key: AKIA5Z4TV4JITBVRL454
+    org.springframework.web: debug
+cloud:
+  aws:
+    credentials:
+      access-key: AKIA5Z4TV4JITBVRL454
       secret-key: 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
     region:
       static: ap-northeast-2
-    stack:      auto: false
+    stack:
+      auto: false
